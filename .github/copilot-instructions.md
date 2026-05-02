@@ -1,0 +1,4 @@
+- [x] Confirm the project type and language with the user.
+- [x] Scaffold the requested project once requirements are clear.
+- [ ] Keep the workspace minimal until the user specifies their needs.
+- [ ] Keep `index.html` as the main starter page for the Highlanders Wrestling Club website.
