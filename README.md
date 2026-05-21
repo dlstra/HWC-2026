@@ -1,6 +1,6 @@
-# Highlanders Wrestling Club Website
+# Claymores Wrestling Club Website
 
-This workspace contains a static landing page for the Highlanders Wrestling Club.
+This workspace contains a static landing page for the Claymores Wrestling Club.
 
 ## Files
 
