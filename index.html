@@ -2219,8 +2219,8 @@ footer span { color: var(--crimson-bright); }
 
 <script>
 function toggleMatBash() {
-  const menu = document.getElementById("matbash-menu");
-  menu.classList.toggle("open");
+  const menus = document.querySelectorAll("#matbash-menu, #matbash-menu-mobile");
+  menus.forEach(m => m.classList.toggle("open"));
 }
 document.addEventListener("click", function(e) {
   if (!e.target.closest(".matbash-nav-wrap")) {
