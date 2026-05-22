@@ -1752,8 +1752,18 @@ footer span { color: var(--crimson-bright); }
   <button id="mnav-about" onclick="showPage('about')">About Us</button>
   <button id="mnav-lessons" onclick="showPage('lessons')">Private Lessons</button>
   <button id="mnav-store" onclick="showPage('store')">Store</button>
-  <button id="mnav-matbash" onclick="showPage('matbash')">Mat Bash</button>
-    <button id="mnav-contact" onclick="showPage('contact')">Contact</button>
+  <div class="matbash-nav-wrap" style="width:100%; padding:4px 0;">
+    <img src="mat-bash-nav.png" onclick="toggleMatBash()" class="matbash-nav-btn" alt="Mat Bash" style="height:48px; width:auto;" />
+    <div class="matbash-menu" id="matbash-menu-mobile">
+      <a href="https://docs.google.com/forms/d/1qArfCuC4NhAUFD2mmxCLfyg6hzh0yNMhZKN4uopT3q0/preview" target="_blank">Sign Up</a>
+      <a href="https://docs.google.com/spreadsheets/d/1V-ZNuFLPiTx5YKxE10_tzYoiWy_ZBSXOCMAalTCyPuE/edit?usp=sharing" target="_blank">Dual Team Roster</a>
+      <a href="matbash-signup.pdf" target="_blank">SportsU Code</a>
+      <a href="https://www.flowrestling.org/nextgen/events/15348585/information" target="_blank">Tournament Details</a>
+      <a href="YOUR_TRAVEL_INFO_URL" target="_blank">Travel Information</a>
+      <a href="#" onclick="toggleMatBash(); showPage('store');">Store Link</a>
+    </div>
+  </div>
+  <button id="mnav-contact" onclick="showPage('contact')">Contact</button>
 </div>
 
 <!-- HOME -->
