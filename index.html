@@ -2194,22 +2194,27 @@ footer span { color: var(--crimson-bright); }
 
     <div class="form-card" id="form-wrapper">
       <div class="form-title">Send a Message</div>
-      <div class="form-group"><label class="form-label">Your Name</label><input type="text" placeholder="Full name" id="f-name"></div>
-      <div class="form-group"><label class="form-label">Email Address</label><input type="email" placeholder="your@email.com" id="f-email"></div>
-      <div class="form-group"><label class="form-label">Topic</label>
-        <select id="f-topic">
-          <option value="">Select a topic...</option>
-          <option>Registration</option>
-          <option>Private Lessons</option>
-          <option>Practice Schedule</option>
-          <option>USAW Cards</option>
-          <option>General Question</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <div class="form-group"><label class="form-label">Message</label><textarea placeholder="How can we help?" id="f-msg"></textarea></div>
-      <button class="form-submit" onclick="submitForm()">Send Message</button>
-      <div class="form-success" id="form-success">
+      <form name="hwc-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field"
+            onsubmit="handleNetlifySubmit(event)">
+        <input type="hidden" name="form-name" value="hwc-contact" />
+        <input type="hidden" name="bot-field" />
+        <div class="form-group"><label class="form-label">Your Name</label><input type="text" name="name" placeholder="Full name" required /></div>
+        <div class="form-group"><label class="form-label">Email Address</label><input type="email" name="email" placeholder="your@email.com" required /></div>
+        <div class="form-group"><label class="form-label">Topic</label>
+          <select name="topic">
+            <option value="">Select a topic...</option>
+            <option>Registration</option>
+            <option>Private Lessons</option>
+            <option>Practice Schedule</option>
+            <option>USAW Cards</option>
+            <option>General Question</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group"><label class="form-label">Message</label><textarea name="message" placeholder="How can we help?" required></textarea></div>
+        <button class="form-submit" type="submit">Send Message</button>
+      </form>
+      <div class="form-success" id="form-success" style="display:none;">
         <div class="check"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C0272D" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
         <p>Message Sent!</p>
       </div>
@@ -2313,31 +2318,17 @@ function closeMobileNav() {
   document.getElementById('mobile-nav').classList.remove('open');
   document.getElementById('nav-toggle').classList.remove('open');
 }
-async function submitForm() {
-  var name = document.getElementById('f-name').value.trim();
-  var email = document.getElementById('f-email').value.trim();
-  var topic = document.getElementById('f-topic').value;
-  var msg = document.getElementById('f-msg').value.trim();
-  if (!name || !email || !msg) { alert('Please fill in your name, email, and message.'); return; }
-  var btn = document.getElementById('form-wrapper').querySelector('.form-submit');
-  btn.textContent = 'Sending…';
-  btn.disabled = true;
-  try {
-    var response = await fetch('https://formspree.io/f/xwvyaeng', {
+function handleNetlifySubmit(e) {
+    e.preventDefault();
+    var form = e.target;
+    fetch('/', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ name: name, _replyto: email, topic: topic, message: msg })
-    });
-    if (response.ok) {
-      document.getElementById('form-wrapper').querySelector('.form-submit').style.display = 'none';
-      document.getElementById('form-wrapper').querySelectorAll('.form-group').forEach(g => g.style.display = 'none');
-      document.getElementById('form-wrapper').querySelector('.form-title').style.display = 'none';
-      document.getElementById('form-success').style.display = 'block';
-    } else {
-      btn.textContent = 'Send Message';
-      btn.disabled = false;
-      alert('Something went wrong. Please try again.');
-    }
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString()
+    }).then(() => {
+      form.style.display = 'none';
+      document.getElementById('form-success').style.display = 'flex';
+    }).catch(() => alert('Something went wrong. Please try again.'));
   } catch(e) {
     btn.textContent = 'Send Message';
     btn.disabled = false;
