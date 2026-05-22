@@ -2329,12 +2329,6 @@ function handleNetlifySubmit(e) {
       form.style.display = 'none';
       document.getElementById('form-success').style.display = 'flex';
     }).catch(() => alert('Something went wrong. Please try again.'));
-  } catch(e) {
-    btn.textContent = 'Send Message';
-    btn.disabled = false;
-    alert('Something went wrong. Please try again.');
-  }
-}
 function cowFound() {
   var t = document.getElementById('cow-toast');
   t.classList.add('show');
