@@ -354,6 +354,8 @@ nav button.cta:hover, nav a.cta:hover { background: var(--crimson-bright); box-s
 .matbash-menu a { display: block; padding: 14px 20px; font-family: "Cinzel", serif; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.7); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.06); transition: color 0.15s, background 0.15s; }
 .matbash-menu a:last-child { border-bottom: none; }
 .matbash-menu a:hover { color: #C0272D; background: rgba(192,39,45,0.08); }
+.sponsors-nav-wrap { position: relative; display: inline-flex; align-items: center; }
+.sponsors-nav-wrap .matbash-menu { top: calc(100% + 8px); left: 50%; transform: translateX(-50%); }
 
   width: 280px;
   min-height: 260px;
@@ -1791,6 +1793,13 @@ footer span { color: var(--crimson-bright); }
     <button id="nav-about" onclick="showPage('about')">About Us</button>
     <button id="nav-lessons" onclick="showPage('lessons')">Private Lessons</button>
     <button id="nav-store" onclick="showPage('store')">Store</button>
+    <div class="sponsors-nav-wrap">
+      <button id="nav-sponsors" onclick="toggleSponsors()">Our Sponsors ▾</button>
+      <div class="matbash-menu" id="sponsors-menu">
+        <a href="#" onclick="toggleSponsors(); showPage('sponsors');">Our Sponsors</a>
+        <a href="https://docs.google.com/forms/d/1yBDl1jM7eiWupaecR1xm7ZhY9NNZy2NBXn-T_9205oA/viewform" target="_blank">Become a Sponsor</a>
+      </div>
+    </div>
     <button id="nav-contact" onclick="showPage('contact')">Contact</button>
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSdz972u6X1xOWJk0biPmqSm5ufGcodX5oklrdwHEFdae769WA/viewform?usp=header" target="_blank" rel="noopener" class="cta" style="text-decoration:none;">Register Now</a>
   </nav>
@@ -1803,6 +1812,13 @@ footer span { color: var(--crimson-bright); }
   <button id="mnav-about" onclick="showPage('about')">About Us</button>
   <button id="mnav-lessons" onclick="showPage('lessons')">Private Lessons</button>
   <button id="mnav-store" onclick="showPage('store')">Store</button>
+  <div class="sponsors-nav-wrap" style="width:100%; padding:4px 0; display:block;">
+    <button id="mnav-sponsors" onclick="toggleSponsors()" style="width:100%; text-align:left;">Our Sponsors ▾</button>
+    <div class="matbash-menu" id="sponsors-menu-mobile" style="position:static; transform:none; display:none; box-shadow:none; border-radius:0;">
+      <a href="#" onclick="toggleSponsors(); showPage('sponsors');">Our Sponsors</a>
+      <a href="https://docs.google.com/forms/d/1yBDl1jM7eiWupaecR1xm7ZhY9NNZy2NBXn-T_9205oA/viewform" target="_blank">Become a Sponsor</a>
+    </div>
+  </div>
   <div class="matbash-nav-wrap" style="width:100%; padding:4px 0;">
     <img src="mat-bash-nav.png" onclick="toggleMatBash()" class="matbash-nav-btn" alt="Mat Bash" style="height:48px; width:auto;" />
     <div class="matbash-menu" id="matbash-menu-mobile">
@@ -2278,6 +2294,40 @@ footer span { color: var(--crimson-bright); }
   </div>
 </div>
 
+<div id="page-sponsors" class="page">
+  <div class="page-banner">
+    <div class="page-banner-text">
+      <div class="page-banner-eyebrow">Community Support</div>
+      <h2>Our <span>Sponsors</span></h2>
+      <p>We are grateful to the businesses and families who invest in our athletes and make this program possible.</p>
+    </div>
+  </div>
+  <section style="padding:80px 48px; max-width:1100px; margin:0 auto; text-align:center;">
+    <div style="font-family:'Cinzel',serif; font-size:13px; letter-spacing:0.14em; color:rgba(255,255,255,0.45); text-transform:uppercase; margin-bottom:64px;">Sponsor listings coming soon</div>
+    <div class="blade-divider"></div>
+    <div style="margin-top:64px;">
+      <div style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.18em; color:rgba(255,255,255,0.45); text-transform:uppercase; margin-bottom:12px;">Support the Highlanders</div>
+      <h3 style="font-family:'Metamorphous',serif; font-size:2rem; color:var(--off-white); margin-bottom:24px;">Make a <span style="color:var(--crimson-bright);">Donation</span></h3>
+      <p style="font-family:'Crimson Pro',serif; font-size:1.15rem; color:rgba(255,255,255,0.6); max-width:520px; margin:0 auto 40px;">Every contribution goes directly toward equipment, tournament fees, and growing the next generation of Highlander wrestlers.</p>
+      <a href="https://buy.stripe.com/dRm00ibs97yK0AKaZ8fMA0j" target="_blank" rel="noopener"
+        style="display:inline-block; padding:22px 64px; background:var(--crimson-bright); color:#fff; font-family:'Cinzel',serif; font-size:1rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; text-decoration:none; border-radius:6px; box-shadow:0 0 32px rgba(192,39,45,0.55); transition:background 0.2s, box-shadow 0.2s;"
+        onmouseover="this.style.background='#d93025'; this.style.boxShadow='0 0 48px rgba(192,39,45,0.8)';"
+        onmouseout="this.style.background='#C0272D'; this.style.boxShadow='0 0 32px rgba(192,39,45,0.55)';">
+        ♥ &nbsp; Donate Now
+      </a>
+    </div>
+    <div style="margin-top:64px; padding-top:48px; border-top:1px solid rgba(255,255,255,0.07);">
+      <div style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.18em; color:rgba(255,255,255,0.45); text-transform:uppercase; margin-bottom:16px;">Interested in sponsoring?</div>
+      <a href="https://docs.google.com/forms/d/1yBDl1jM7eiWupaecR1xm7ZhY9NNZy2NBXn-T_9205oA/viewform" target="_blank" rel="noopener"
+        style="display:inline-block; padding:14px 40px; border:1px solid rgba(192,39,45,0.6); color:var(--crimson-bright); font-family:'Cinzel',serif; font-size:0.8rem; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; text-decoration:none; border-radius:6px; transition:border-color 0.2s, background 0.2s;"
+        onmouseover="this.style.background='rgba(192,39,45,0.1)'; this.style.borderColor='#C0272D';"
+        onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(192,39,45,0.6)';">
+        Become a Sponsor
+      </a>
+    </div>
+  </section>
+</div>
+
 <script>
 function toggleBio(id, btn) {
   const bio = document.getElementById(id);
@@ -2293,6 +2343,24 @@ document.addEventListener("click", function(e) {
   if (!e.target.closest(".matbash-nav-wrap")) {
     const menu = document.getElementById("matbash-menu");
     if (menu) menu.classList.remove("open");
+  }
+});
+
+function toggleSponsors() {
+  const desktop = document.getElementById("sponsors-menu");
+  const mobile = document.getElementById("sponsors-menu-mobile");
+  if (desktop) desktop.classList.toggle("open");
+  if (mobile) {
+    const isOpen = mobile.style.display === "block";
+    mobile.style.display = isOpen ? "none" : "block";
+  }
+}
+document.addEventListener("click", function(e) {
+  if (!e.target.closest(".sponsors-nav-wrap")) {
+    const menu = document.getElementById("sponsors-menu");
+    if (menu) menu.classList.remove("open");
+    const menuM = document.getElementById("sponsors-menu-mobile");
+    if (menuM) menuM.style.display = "none";
   }
 });
 
