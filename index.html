@@ -2376,7 +2376,12 @@ function showPage(id) {
   if (mbtn) mbtn.classList.add('active');
   closeMobileNav();
   window.scrollTo(0,0);
+  history.replaceState(null, '', '#' + id);
 }
+window.addEventListener('DOMContentLoaded', function() {
+  var hash = window.location.hash.replace('#', '');
+  if (hash && document.getElementById('page-' + hash)) showPage(hash);
+});
 function toggleMobileNav() {
   var menu = document.getElementById('mobile-nav');
   var toggle = document.getElementById('nav-toggle');
