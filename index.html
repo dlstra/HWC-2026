@@ -2378,10 +2378,16 @@ function showPage(id) {
   window.scrollTo(0,0);
   history.replaceState(null, '', '#' + id);
 }
-window.addEventListener('DOMContentLoaded', function() {
+function handleHash() {
   var hash = window.location.hash.replace('#', '');
   if (hash && document.getElementById('page-' + hash)) showPage(hash);
-});
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', handleHash);
+} else {
+  handleHash();
+}
+window.addEventListener('hashchange', handleHash);
 function toggleMobileNav() {
   var menu = document.getElementById('mobile-nav');
   var toggle = document.getElementById('nav-toggle');
