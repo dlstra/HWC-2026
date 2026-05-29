@@ -1797,7 +1797,7 @@ footer span { color: var(--crimson-bright); }
       <button id="nav-sponsors" onclick="toggleSponsors()">Our Sponsors ▾</button>
       <div class="matbash-menu" id="sponsors-menu">
         <a href="javascript:void(0)" onclick="toggleSponsors(); showPage('sponsors');">Our Sponsors</a>
-        <a href="https://docs.google.com/forms/d/1yBDl1jM7eiWupaecR1xm7ZhY9NNZy2NBXn-T_9205oA/viewform" target="_blank">Become a Sponsor</a>
+        <a href="javascript:void(0)" onclick="toggleSponsors(); showPage('become-sponsor');">Become a Sponsor</a>
       </div>
     </div>
     <button id="nav-contact" onclick="showPage('contact')">Contact</button>
@@ -2306,6 +2306,7 @@ footer span { color: var(--crimson-bright); }
   </div>
   <section style="padding:80px 48px; max-width:1100px; margin:0 auto; text-align:center;">
     <div style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.18em; color:rgba(255,255,255,0.45); text-transform:uppercase; margin-bottom:32px;">Our Partners</div>
+    <p style="font-family:'Crimson Pro',serif; font-size:1.25rem; font-style:italic; color:rgba(255,255,255,0.65); max-width:620px; margin:0 auto 48px; line-height:1.7;">"Our sponsors make this program possible. Their generosity fuels every practice, every tournament, and every young athlete who steps on the mat wearing the Highlander singlet. We are deeply grateful."</p>
     <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:32px; margin-bottom:64px;">
       <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:28px 40px; display:flex; align-items:center; justify-content:center; transition:background 0.2s;"
         onmouseover="this.style.background='rgba(255,255,255,0.1)'"
@@ -2313,8 +2314,22 @@ footer span { color: var(--crimson-bright); }
         <img src="sponsor-texan-dirt.png" alt="Texan Dirt" style="max-width:400px; max-height:200px; object-fit:contain; filter:invert(1); opacity:0.85;" />
       </div>
     </div>
-    <div class="blade-divider"></div>
-    <div style="margin-top:64px;">
+  </section>
+  </div>
+</div>
+
+<div id="page-become-sponsor" class="page">
+  <div style="position:fixed; inset:0; background:url('sponsors-plaid.png') repeat; background-size:420px 420px; opacity:0.07; pointer-events:none; z-index:1;"></div>
+  <div style="position:relative; z-index:2;">
+  <div class="page-banner">
+    <div class="page-banner-text">
+      <div class="page-banner-eyebrow">Get Involved</div>
+      <h2>Become a <span>Sponsor</span></h2>
+      <p>Support the next generation of Highlander wrestlers and get your brand in front of our community.</p>
+    </div>
+  </div>
+  <section style="padding:80px 48px; max-width:1100px; margin:0 auto; text-align:center;">
+    <div style="margin-bottom:64px;">
       <div style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.18em; color:rgba(255,255,255,0.45); text-transform:uppercase; margin-bottom:12px;">Support the Highlanders</div>
       <h3 style="font-family:'Metamorphous',serif; font-size:2rem; color:var(--off-white); margin-bottom:24px;">Make a <span style="color:var(--crimson-bright);">Donation</span></h3>
       <p style="font-family:'Crimson Pro',serif; font-size:1.15rem; color:rgba(255,255,255,0.6); max-width:520px; margin:0 auto 40px;">Every contribution goes directly toward equipment, tournament fees, and growing the next generation of Highlander wrestlers.</p>
@@ -2326,7 +2341,7 @@ footer span { color: var(--crimson-bright); }
         <span style="position:relative; z-index:1; font-size:1.5rem;">Donate Now</span>
       </a>
     </div>
-    <div style="margin-top:64px; padding-top:48px; border-top:1px solid rgba(255,255,255,0.07);">
+    <div style="padding-top:48px; border-top:1px solid rgba(255,255,255,0.07);">
       <div style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.18em; color:rgba(255,255,255,0.45); text-transform:uppercase; margin-bottom:16px;">Interested in sponsoring?</div>
       <a href="https://docs.google.com/forms/d/1yBDl1jM7eiWupaecR1xm7ZhY9NNZy2NBXn-T_9205oA/viewform" target="_blank" rel="noopener"
         style="display:inline-block; padding:14px 40px; border:1px solid rgba(192,39,45,0.6); color:var(--crimson-bright); font-family:'Cinzel',serif; font-size:0.8rem; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; text-decoration:none; border-radius:6px; transition:border-color 0.2s, background 0.2s;"
