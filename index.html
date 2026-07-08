@@ -1515,6 +1515,12 @@ footer span { color: var(--crimson-bright); }
   .hero-h1 { font-size: 2.4rem; }
   .hero-h1 span { font-size: 1.8rem; }
   .hero { padding: 2.5rem 1.2rem; }
+  /* The crest watermark and giant ghost lettering are absolutely
+     positioned at desktop size/coordinates and don't reflow when the
+     hero stacks into a column, so they land on top of the paragraph
+     text. Drop them on mobile and let the text use the full width. */
+  .hero-text { padding-left: 0; }
+  .hero::after, .hero-bg-text { display: none; }
   section { padding: 2rem 1.2rem; }
   .contact-layout { padding: 2rem 1.2rem; }
   .page-banner h2 { font-size: 2rem; }
