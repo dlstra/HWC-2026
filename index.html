@@ -342,6 +342,7 @@ nav button.cta:hover, nav a.cta:hover { background: var(--crimson-bright); box-s
 
 /* MAT BASH DROPDOWN */
 .matbash-nav-wrap { position: relative; display: flex; align-items: center; }
+.matbash-nav-wrap.matbash-hidden { display: none !important; }
 .matbash-nav-btn { height: 64px; width: auto; cursor: pointer; border-radius: 6px; opacity: 0.92; transition: opacity 0.2s, transform 0.2s; border: 2px solid rgba(255,255,255,0.8); box-shadow: 0 0 8px rgba(255,255,255,0.2); }
 .matbash-nav-btn:hover { opacity: 1; transform: scale(1.04); }
 .matbash-nav-wrap .matbash-menu { top: calc(100% + 8px); left: 0; transform: none; }
@@ -1783,7 +1784,7 @@ footer span { color: var(--crimson-bright); }
     </div>
   </div>
   <nav>
-    <div class="matbash-nav-wrap">
+    <div class="matbash-nav-wrap matbash-hidden">
       <img src="mat-bash-nav.png" onclick="toggleMatBash()" class="matbash-nav-btn" alt="Mat Bash" />
       <div class="matbash-menu" id="matbash-menu">
         <a href="https://docs.google.com/forms/d/1qArfCuC4NhAUFD2mmxCLfyg6hzh0yNMhZKN4uopT3q0/preview" target="_blank">Sign Up</a>
@@ -1825,7 +1826,7 @@ footer span { color: var(--crimson-bright); }
       <a href="https://docs.google.com/forms/d/1yBDl1jM7eiWupaecR1xm7ZhY9NNZy2NBXn-T_9205oA/viewform" target="_blank">Become a Sponsor</a>
     </div>
   </div>
-  <div class="matbash-nav-wrap" style="width:100%; padding:4px 0;">
+  <div class="matbash-nav-wrap matbash-hidden" style="width:100%; padding:4px 0;">
     <img src="mat-bash-nav.png" onclick="toggleMatBash()" class="matbash-nav-btn" alt="Mat Bash" style="height:48px; width:auto;" />
     <div class="matbash-menu" id="matbash-menu-mobile">
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfmxQ1cgqM9NTzJxT_MRwudkOYh4nCvXiY1wzuXF_0hKgVhXQ/viewform?usp=header" target="_blank">Pay $50 Deposit</a>
@@ -2441,6 +2442,11 @@ function toggleBio(id, btn) {
 function toggleMatBash() {
   const menus = document.querySelectorAll("#matbash-menu, #matbash-menu-mobile");
   menus.forEach(m => m.classList.toggle("open"));
+}
+
+// Mat Bash nav button stays hidden until next season's signup opens
+if (new Date() >= new Date("2027-05-01")) {
+  document.querySelectorAll(".matbash-nav-wrap").forEach(el => el.classList.remove("matbash-hidden"));
 }
 document.addEventListener("click", function(e) {
   if (!e.target.closest(".matbash-nav-wrap")) {
