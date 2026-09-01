@@ -680,6 +680,39 @@ section.alt { background: var(--dark2); }
 .event-type.practice { background: rgba(58,74,42,0.3); color: #8aaa68; border: 1px solid rgba(77,99,56,0.6); }
 .event-type.dual { background: rgba(168,155,120,0.12); color: #b8a87a; border: 1px solid rgba(168,155,120,0.35); }
 
+/* PRACTICE CALENDAR */
+.cal-widget { margin-bottom: 2rem; }
+.cal-header { display: flex; align-items: center; justify-content: center; gap: 1.2rem; margin-bottom: 1rem; }
+.cal-nav {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--charcoal); border: 1px solid var(--crimson);
+  color: var(--off-white); display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-family: var(--condensed); font-size: 1.2rem;
+  transition: border-color .15s, background .15s, opacity .15s;
+}
+.cal-nav:hover:not(:disabled) { border-color: var(--crimson-bright); background: var(--dark2); }
+.cal-nav:disabled { opacity: .3; cursor: default; }
+.cal-title { font-family: var(--display); font-size: 1.15rem; letter-spacing: 1px; color: var(--silver-light); min-width: 12ch; text-align: center; }
+.cal-scroll { overflow-x: auto; }
+.cal-weekdays { display: grid; grid-template-columns: repeat(7,1fr); min-width: 700px; margin-bottom: .4rem; }
+.cal-weekdays span {
+  font-family: var(--condensed); font-weight: 700; font-size: .68rem; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--silver-dim); text-align: center; padding: .4rem 0;
+}
+.cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 1px; min-width: 700px; background: rgba(139,26,26,0.25); border: 1px solid rgba(139,26,26,0.25); }
+.cal-cell { min-height: 96px; padding: .5rem .5rem .45rem; background: var(--dark2); display: flex; flex-direction: column; gap: .3rem; }
+.cal-cell.empty { background: var(--black); }
+.cal-cell .cal-date { font-family: var(--condensed); font-weight: 700; font-size: .78rem; color: var(--silver); }
+.cal-event { font-size: .64rem; line-height: 1.3; padding: .2em .4em; background: rgba(139,26,26,0.22); border-left: 2px solid var(--crimson-bright); color: var(--off-white); }
+.cal-event.cancelled { background: rgba(192,39,45,0.08); border-left-color: var(--crimson-bright); color: var(--silver-dim); }
+.cal-event.cancelled .cal-event-time { text-decoration: line-through; }
+.cal-event .cal-event-tag { display: block; color: var(--crimson-bright); font-weight: 700; letter-spacing: 1px; font-size: .6rem; }
+.cal-legend { display: flex; align-items: center; gap: 1.4rem; margin-top: .9rem; font-family: var(--condensed); font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--silver-dim); }
+.cal-legend span { display: inline-flex; align-items: center; gap: .5em; }
+.cal-legend .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--crimson-bright); display: inline-block; }
+.cal-legend .dot.cancelled { background: var(--silver-dim); }
+@media (max-width: 900px) { .cal-grid, .cal-weekdays { min-width: 640px; } }
+
 /* GALLERY */
 .gallery-section {
   padding: 3rem 0 3rem 3rem;
@@ -1936,244 +1969,91 @@ footer span { color: var(--crimson-bright); }
     <div class="section-title">Upcoming <span>Schedule</span></div>
 
     <div class="section-title" style="font-size:1.4rem;margin-bottom:1rem;">Practice <span>Schedule</span></div>
-    <div class="schedule-wrapper"><table class="schedule-table">
-      <thead><tr><th>Date</th><th>Event</th><th>Location</th><th>Type</th></tr></thead>
-      <tbody>
-        <tr><td>05/11</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>05/12</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>05/12</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>05/14</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>05/14</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>05/18</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>05/19</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>05/19</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>05/21</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>05/21</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>05/25</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>05/26</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>05/26</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>05/28</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>05/28</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>06/01</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>06/02</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>06/02</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>06/04</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>06/04</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>06/08</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>06/09</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>06/09</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>06/11</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>06/11</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>06/15</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>06/16</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>06/16</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>06/18</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>06/18</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>06/22</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>06/23</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>06/23</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>06/25</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>06/25</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>06/29</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>06/30</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>06/30</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>07/02</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>07/02</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>07/06</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>07/07</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>07/07</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>07/09</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>07/09</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>07/13</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>07/14</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>07/14</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>07/16</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>07/16</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>07/20</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>07/21</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>07/21</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>07/23</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>07/23</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>07/27</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>07/28</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>07/28</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>07/30</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>07/30</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>08/03</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>08/04</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>08/04</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>08/06</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>08/06</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>08/10</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>08/11</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>08/11</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>08/13</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>08/13</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>08/17</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>08/18</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>08/18</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>08/20</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>08/20</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>08/24</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>08/25</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>08/25</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>08/27</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>08/27</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>08/31</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>09/01</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>09/01</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>09/03</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>09/03</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>09/07</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>09/08</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>09/08</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>09/10</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>09/10</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>09/14</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>09/15</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>09/15</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>09/17</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>09/17</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>09/21</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>09/22</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>09/22</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>09/24</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>09/24</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>09/28</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>09/29</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>09/29</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>10/01</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>10/01</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>10/05</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>10/06</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>10/06</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>10/08</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>10/08</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>10/12</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>10/13</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>10/13</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>10/15</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>10/15</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>10/19</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>10/20</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>10/20</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>10/22</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>10/22</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>10/26</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>10/27</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>10/27</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>10/29</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>10/29</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>11/02</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>11/03</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>11/03</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>11/05</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>11/05</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>11/09</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>11/10</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>11/10</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>11/12</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>11/12</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>11/16</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>11/17</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>11/17</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>11/19</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>11/19</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>11/23</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>11/24</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>11/24</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>11/26</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>11/26</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>11/30</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/01</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/01</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/03</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/03</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/07</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/08</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/08</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/10</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/10</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/14</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/15</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/15</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/17</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/17</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/21</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/22</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/22</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/24</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/24</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/28</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/29</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/29</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/31</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>12/31</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>01/04</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>01/05</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>01/05</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>01/07</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>01/07</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>01/11</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>01/12</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>01/12</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>01/14</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>01/14</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>01/18</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>01/19</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>01/19</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>01/21</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>01/21</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>01/25</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>01/26</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>01/26</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>01/28</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>01/28</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>02/01</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>02/02</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>02/02</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>02/04</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>02/04</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>02/08</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>02/09</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>02/09</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>02/11</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>02/11</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>02/15</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>02/16</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>02/16</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>02/18</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>02/18</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>02/22</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>02/23</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>02/23</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>02/25</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>02/25</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>03/01</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>03/02</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>03/02</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>03/04</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>03/04</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>03/08</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>03/09</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>03/09</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>03/11</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>03/11</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>03/15</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>03/16</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>03/16</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>03/18</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>03/18</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM &nbsp;·&nbsp; <span style="color:#C0272D;font-weight:700;letter-spacing:1px;">CANCELLED</span></td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>03/22</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>03/23</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>03/23</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>03/25</td><td>Thursday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>03/25</td><td>Thursday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>03/29</td><td>Monday Practice (All) &nbsp;·&nbsp; 6:00–7:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>03/30</td><td>Tuesday Practice (Youth) &nbsp;·&nbsp; 5:30–6:30 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-        <tr><td>03/30</td><td>Tuesday Practice (HS) &nbsp;·&nbsp; 6:30–8:00 PM</td><td>TWHS</td><td><span class="event-type practice">Practice</span></td></tr>
-      </tbody>
-    </table></div>
+    <div class="cal-widget">
+      <div class="cal-header">
+        <button class="cal-nav" id="calPrev" type="button" aria-label="Previous month">&lsaquo;</button>
+        <div class="cal-title" id="calTitle"></div>
+        <button class="cal-nav" id="calNext" type="button" aria-label="Next month">&rsaquo;</button>
+      </div>
+      <div class="cal-scroll">
+        <div class="cal-weekdays">
+          <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+      </div>
+      <div class="cal-legend">
+        <span><span class="dot"></span> Practice</span>
+        <span><span class="dot cancelled"></span> Cancelled</span>
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      var PRACTICES = {"2026-05-11": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-05-12": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-05-14": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-05-18": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": true}], "2026-05-19": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-05-21": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-05-25": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": true}], "2026-05-26": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-05-28": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-06-01": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-06-02": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-06-04": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-06-08": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-06-09": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-06-11": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-06-15": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-06-16": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-06-18": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-06-22": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-06-23": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-06-25": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-06-29": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-06-30": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-07-02": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-07-06": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-07-07": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-07-09": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-07-13": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-07-14": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-07-16": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-07-20": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-07-21": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-07-23": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": true}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": true}], "2026-07-27": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": true}], "2026-07-28": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": true}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": true}], "2026-07-30": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": true}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": true}], "2026-08-03": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-08-04": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-08-06": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-08-10": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-08-11": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-08-13": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-08-17": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-08-18": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-08-20": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-08-24": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-08-25": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-08-27": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-08-31": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-09-01": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": true}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": true}], "2026-09-03": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-09-07": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-09-08": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-09-10": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-09-14": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-09-15": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-09-17": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-09-21": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-09-22": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-09-24": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-09-28": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-09-29": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-10-01": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-10-05": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-10-06": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-10-08": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-10-12": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-10-13": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-10-15": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-10-19": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-10-20": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-10-22": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-10-26": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-10-27": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-10-29": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-11-02": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-11-03": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-11-05": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-11-09": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-11-10": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-11-12": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-11-16": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-11-17": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-11-19": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-11-23": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-11-24": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-11-26": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": true}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": true}], "2026-11-30": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-12-01": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-12-03": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-12-07": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-12-08": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-12-10": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-12-14": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-12-15": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-12-17": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-12-21": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2026-12-22": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2026-12-24": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": true}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": true}], "2026-12-28": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": true}], "2026-12-29": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": true}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": true}], "2026-12-31": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": true}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": true}], "2027-01-04": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2027-01-05": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2027-01-07": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2027-01-11": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2027-01-12": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2027-01-14": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2027-01-18": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2027-01-19": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2027-01-21": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2027-01-25": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2027-01-26": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2027-01-28": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2027-02-01": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2027-02-02": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2027-02-04": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2027-02-08": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2027-02-09": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2027-02-11": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2027-02-15": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2027-02-16": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2027-02-18": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2027-02-22": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2027-02-23": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2027-02-25": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2027-03-01": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2027-03-02": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2027-03-04": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2027-03-08": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2027-03-09": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2027-03-11": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2027-03-15": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": true}], "2027-03-16": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": true}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": true}], "2027-03-18": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": true}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": true}], "2027-03-22": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2027-03-23": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2027-03-25": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}], "2027-03-29": [{"type": "All", "time": "6:00–7:30 PM", "cancelled": false}], "2027-03-30": [{"type": "Youth", "time": "5:30–6:30 PM", "cancelled": false}, {"type": "Jr/Sr High", "time": "6:30–8:00 PM", "cancelled": false}]};
+      var grid = document.getElementById('calGrid');
+      var title = document.getElementById('calTitle');
+      var prevBtn = document.getElementById('calPrev');
+      var nextBtn = document.getElementById('calNext');
+      var MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      var MIN_YEAR = 2026, MIN_MONTH = 4, MAX_YEAR = 2027, MAX_MONTH = 2;
+      var today = new Date();
+      var cur = { year: today.getFullYear(), month: today.getMonth() };
+      if (cur.year < MIN_YEAR || (cur.year === MIN_YEAR && cur.month < MIN_MONTH)) { cur = { year: MIN_YEAR, month: MIN_MONTH }; }
+      if (cur.year > MAX_YEAR || (cur.year === MAX_YEAR && cur.month > MAX_MONTH)) { cur = { year: MAX_YEAR, month: MAX_MONTH }; }
+
+      function pad(n){ return n < 10 ? '0' + n : '' + n; }
+
+      function render(){
+        grid.innerHTML = '';
+        var first = new Date(cur.year, cur.month, 1);
+        var startWeekday = first.getDay();
+        var daysInMonth = new Date(cur.year, cur.month + 1, 0).getDate();
+        for (var i = 0; i < startWeekday; i++){
+          var empty = document.createElement('div');
+          empty.className = 'cal-cell empty';
+          grid.appendChild(empty);
+        }
+        for (var day = 1; day <= daysInMonth; day++){
+          var cell = document.createElement('div');
+          cell.className = 'cal-cell';
+          var dnum = document.createElement('div');
+          dnum.className = 'cal-date';
+          dnum.textContent = day;
+          cell.appendChild(dnum);
+          var key = cur.year + '-' + pad(cur.month + 1) + '-' + pad(day);
+          var evts = PRACTICES[key];
+          if (evts){
+            evts.forEach(function(ev){
+              var e = document.createElement('div');
+              e.className = 'cal-event' + (ev.cancelled ? ' cancelled' : '');
+              if (ev.cancelled){
+                e.innerHTML = '<span class="cal-event-tag">CANCELLED</span>' + ev.type + ' &middot; <span class="cal-event-time">' + ev.time + '</span>';
+              } else {
+                e.textContent = ev.type + ' \u00b7 ' + ev.time;
+              }
+              cell.appendChild(e);
+            });
+          }
+          grid.appendChild(cell);
+        }
+        title.textContent = MONTH_NAMES[cur.month] + ' ' + cur.year;
+        prevBtn.disabled = (cur.year === MIN_YEAR && cur.month === MIN_MONTH);
+        nextBtn.disabled = (cur.year === MAX_YEAR && cur.month === MAX_MONTH);
+      }
+
+      prevBtn.addEventListener('click', function(){
+        if (prevBtn.disabled) return;
+        cur.month--; if (cur.month < 0){ cur.month = 11; cur.year--; }
+        render();
+      });
+      nextBtn.addEventListener('click', function(){
+        if (nextBtn.disabled) return;
+        cur.month++; if (cur.month > 11){ cur.month = 0; cur.year++; }
+        render();
+      });
+      render();
+    })();
+    </script>
 
     <div class="section-title" style="font-size:1.4rem;margin-bottom:1rem;margin-top:2.5rem;">Events <span>Schedule</span></div>
     <div class="schedule-wrapper"><table class="schedule-table">
@@ -2188,7 +2068,36 @@ footer span { color: var(--crimson-bright); }
         <tr><td>07/09–07/18</td><td>USMC Junior &amp; 16U National Tournament</td><td>Fargo, ND</td><td><span class="event-type tournament">Tournament</span></td></tr>
         <tr><td>07/24–07/26</td><td>Mat Bash Duals</td><td>Coppell, TX</td><td><span class="event-type dual">Dual</span></td></tr>
         <tr><td>08/29–08/30</td><td>Super 32 Early Entry Texas Tournament</td><td>Clear Springs HS</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>10/03</td><td>Legacy's Aggieland Takedown</td><td>Bryan High School (Gym #3), Bryan, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>10/10</td><td>Westchase WC Kickoff</td><td>Spring Klein Wrestling Club, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>10/11</td><td>TX USAW South Region &ndash; Team Texas Clinic</td><td>TBD</td><td><span class="event-type tournament">Clinic</span></td></tr>
+        <tr><td>10/17</td><td>Legacy's Fall Brawl</td><td>Bryan High School (Gym #3), Bryan, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
         <tr><td>10/23–10/26</td><td>Preseason Nationals</td><td>Des Moines, IA</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>10/24</td><td>Grand Oaks Takedown</td><td>Spring Klein Wrestling Club, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>11/07</td><td>SKWC Opener</td><td>Spring Klein Wrestling Club, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>11/08</td><td>TX USAW South Region &ndash; Team Texas Clinic</td><td>TBD</td><td><span class="event-type tournament">Clinic</span></td></tr>
+        <tr><td>11/14</td><td>Rise The Lions Den</td><td>Spring Klein Wrestling Club, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>11/21</td><td>SKWC Wildcat Bash</td><td>Spring Klein Wrestling Club, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>11/22</td><td>TX-Central Rumble on the River (NB Elite)</td><td>TBD</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>11/27–11/28</td><td>Panhandle Nationals</td><td>Amarillo Civic Center, Amarillo, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>12/05</td><td>Edge of Texas Nationals</td><td>UTEP Memorial Gym, El Paso, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>12/12</td><td>Katy Area Classic</td><td>Spring Klein Wrestling Club, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>12/13</td><td>TX USAW South Region &ndash; Team Texas Clinic</td><td>TBD</td><td><span class="event-type tournament">Clinic</span></td></tr>
+        <tr><td>12/19</td><td>KT3 Tournament</td><td>TBD</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>01/02</td><td>SKWC 16th Annual Dermody Open</td><td>Spring Klein Wrestling Club, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>01/09–01/10</td><td>Texas Nationals &amp; Come And Take It Duals</td><td>Legends Event Center, Bryan, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>01/16</td><td>SKWC Wildcat Brawl</td><td>Spring Klein Wrestling Club, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>01/23</td><td>Heart of Texas Nationals</td><td>TBD</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>01/30</td><td>SKWC Last Roundup</td><td>Spring Klein Wrestling Club, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>02/06–02/07</td><td>Lonestar Nationals and Rookie &amp; Novice State Tournament</td><td>The OC, Forney, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>02/14</td><td>South Region Training Day &ndash; State Prep</td><td>Spring Klein Wrestling Club, Spring, TX</td><td><span class="event-type practice">Training</span></td></tr>
+        <tr><td>02/20</td><td>484 Scrap Tournament and Last Chance Qualifier Tournament</td><td>Waller HS, Waller, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>02/21</td><td>State Champ Camp</td><td>Spring Klein Wrestling Club, Spring, TX</td><td><span class="event-type tournament">Camp</span></td></tr>
+        <tr><td>02/27–02/28</td><td>TX-USAW Youth Folkstyle State Tournament (Open &amp; Girls)</td><td>Allen Event Center, Allen, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>03/14</td><td>TX USAW South Region &ndash; Team Texas Clinic</td><td>TBD</td><td><span class="event-type tournament">Clinic</span></td></tr>
+        <tr><td>04/02–04/04</td><td>USAW Heartland National Youth Duals</td><td>Mid-America Center, Council Bluffs, IA</td><td><span class="event-type dual">Dual</span></td></tr>
+        <tr><td>04/11</td><td>TX USAW South Region &ndash; Team Texas Clinic</td><td>TBD</td><td><span class="event-type tournament">Clinic</span></td></tr>
+        <tr><td>04/17–04/18</td><td>Space City Duals (FS/GR Duals &ndash; Boys &amp; Girls Teams)</td><td>East Montgomery Convention Center, New Caney, TX</td><td><span class="event-type dual">Dual</span></td></tr>
       </tbody>
     </table></div>
 
