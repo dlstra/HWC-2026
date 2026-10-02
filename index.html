@@ -723,6 +723,14 @@ section.alt { background: var(--dark2); }
 .schedule-table tr.coached td:nth-child(2) { color: var(--off-white); }
 .schedule-table tr.uncoached td { color: rgba(232,224,213,0.45); }
 .schedule-table tr.uncoached .event-type { opacity: .55; }
+/* Events table in the condensed sans (the body serif is everywhere else) */
+#events-schedule td {
+  font-family: var(--condensed); font-weight: 500;
+  font-size: 1.02rem; letter-spacing: .4px;
+}
+#events-schedule td:nth-child(2) { font-weight: 600; font-size: 1.08rem; letter-spacing: .5px; }
+#events-schedule td:first-child { font-weight: 600; color: var(--silver-light); }
+#events-schedule tr.uncoached td:first-child { color: rgba(232,224,213,0.45); }
 .coach-key {
   margin: -.4rem 0 1rem; font-family: var(--body); font-size: .95rem; color: var(--text-dim);
 }
