@@ -707,6 +707,26 @@ section.alt { background: var(--dark2); }
   font-size: 0.95rem;
 }
 .schedule-table tr:hover td { background: rgba(139,26,26,0.07); }
+/* Which events HWC coaches attend (rows carry .coached / .uncoached) */
+.coach-flag {
+  display: inline-block; margin-left: .5rem; vertical-align: 1px;
+  font-family: var(--condensed); font-size: .6rem; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase; white-space: nowrap;
+  padding: 2px 7px; color: var(--off-white);
+  background: var(--crimson); border: 1px solid var(--crimson-bright);
+}
+.coach-flag-off {
+  display: block; margin-top: 2px;
+  font-family: var(--condensed); font-size: .62rem; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--silver-dim);
+}
+.schedule-table tr.coached td:nth-child(2) { color: var(--off-white); }
+.schedule-table tr.uncoached td { color: rgba(232,224,213,0.45); }
+.schedule-table tr.uncoached .event-type { opacity: .55; }
+.coach-key {
+  margin: -.4rem 0 1rem; font-family: var(--body); font-size: .95rem; color: var(--text-dim);
+}
+.coach-key .coach-flag { margin: 0 .35rem 0 0; }
 .event-type {
   display: inline-block;
   font-family: var(--condensed);
@@ -2151,48 +2171,49 @@ footer span { color: var(--crimson-bright); }
     </script>
 
     <div class="section-title" style="font-size:1.4rem;margin-bottom:1rem;margin-top:2.5rem;">Events <span>Schedule</span></div>
+    <p class="coach-key"><span class="coach-flag">HWC Coaches Attending</span> = Highlander coaches will be there. Other events are open to athletes, but no HWC coaches are planning to attend.</p>
     <div class="schedule-wrapper"><table class="schedule-table" id="events-schedule">
       <thead><tr><th>Date</th><th>Event</th><th>Location</th><th>Type</th></tr></thead>
       <tbody>
-        <tr><td>10/03</td><td>Legacy&rsquo;s Aggieland Takedown</td><td>Bryan High School (Gym #3), 3450 Campus Dr, Bryan, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>10/10</td><td>Westchase WC Kickoff</td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>10/11</td><td>TX USAW South Region &ndash; Team Texas Clinic</td><td>TBD</td><td><span class="event-type tournament">Clinic</span></td></tr>
-        <tr><td>10/17</td><td>Legacy&rsquo;s Fall Brawl</td><td>Bryan High School (Gym #3), 3450 Campus Dr, Bryan, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>10/24</td><td>Grand Oaks Takedown</td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>10/28–10/31</td><td>Pre-Season Nationals</td><td>Des Moines, IA</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>11/07</td><td>SKWC Opener</td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>11/08</td><td>TX USAW South Region &ndash; Team Texas Clinic</td><td>TBD</td><td><span class="event-type tournament">Clinic</span></td></tr>
-        <tr><td>11/14</td><td>Rise The Lion&rsquo;s Den</td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>11/21</td><td>SKWC Wildcat Bash</td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>11/22</td><td>TX-Central Rumble on the River (NB Elite)</td><td>TBD</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>11/27–11/28</td><td>Panhandle Nationals</td><td>Amarillo Civic Center, Amarillo, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>12/05</td><td>Edge of Texas Nationals</td><td>UTEP Memorial Gym, El Paso, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>12/12</td><td>Katy Area Classic</td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>12/13</td><td>TX USAW South Region &ndash; Team Texas Clinic</td><td>TBD</td><td><span class="event-type tournament">Clinic</span></td></tr>
-        <tr><td>12/19</td><td>KT3 Tournament</td><td>TBD</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>01/02</td><td>SKWC 16th Annual Dermody Open</td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>01/09–01/10</td><td>Come &amp; Take It Duals</td><td>Legends Event Center, 2533 Midtown Park Blvd, Bryan, TX</td><td><span class="event-type dual">Dual</span></td></tr>
-        <tr><td>01/09–01/10</td><td>Texas Nationals</td><td>Legends Event Center, 2533 Midtown Park Blvd, Bryan, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>01/16</td><td>SKWC Wildcat Brawl</td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>01/23</td><td>Heart of Texas Nationals</td><td>TBD</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>01/30</td><td>SKWC Last Roundup</td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>02/06–02/07</td><td>Lonestar Nationals</td><td>Opportunity Central (The OC), 680 Innovation Blvd, Forney, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>02/06–02/07</td><td>Texas Rookie &amp; Tot State Championship</td><td>Opportunity Central (The OC), 680 Innovation Blvd, Forney, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>02/06–02/07</td><td>Texas Novice State Championship</td><td>Opportunity Central (The OC), 680 Innovation Blvd, Forney, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>02/14</td><td>South Region Training Day &ndash; State Prep</td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type practice">Training</span></td></tr>
-        <tr><td>02/20</td><td>484 Scrap Tournament and Last Chance Qualifier Tournament</td><td>Waller HS, Waller, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>02/21</td><td>State Champ Camp</td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Camp</span></td></tr>
-        <tr><td>02/27–02/28</td><td>Texas Open &amp; Girls State Championship</td><td>Credit Union of Texas Events Center, 200 E Stacy Rd, Allen, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>03/14</td><td>TX USAW South Region &ndash; Team Texas Clinic</td><td>TBD</td><td><span class="event-type tournament">Clinic</span></td></tr>
-        <tr><td>04/02–04/04</td><td>USAW Heartland National Youth Duals</td><td>Mid-America Center, Council Bluffs, IA</td><td><span class="event-type dual">Dual</span></td></tr>
-        <tr><td>04/11</td><td>TX USAW South Region &ndash; Team Texas Clinic</td><td>TBD</td><td><span class="event-type tournament">Clinic</span></td></tr>
-        <tr><td>04/17–04/18</td><td>Space City Duals (FS/GR Duals &ndash; Boys &amp; Girls Teams)</td><td>East Montgomery Convention Center, New Caney, TX</td><td><span class="event-type dual">Dual</span></td></tr>
+        <tr class="coached"><td>10/03</td><td>Legacy&rsquo;s Aggieland Takedown <span class="coach-flag">HWC Coaches Attending</span></td><td>Bryan High School (Gym #3), 3450 Campus Dr, Bryan, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr class="coached"><td>10/10</td><td>Westchase WC Kickoff <span class="coach-flag">HWC Coaches Attending</span></td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr class="uncoached"><td>10/11</td><td>TX USAW South Region &ndash; Team Texas Clinic <span class="coach-flag-off">No HWC coaches</span></td><td>TBD</td><td><span class="event-type tournament">Clinic</span></td></tr>
+        <tr class="coached"><td>10/17</td><td>Legacy&rsquo;s Fall Brawl <span class="coach-flag">HWC Coaches Attending</span></td><td>Bryan High School (Gym #3), 3450 Campus Dr, Bryan, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr class="coached"><td>10/24</td><td>Grand Oaks Takedown <span class="coach-flag">HWC Coaches Attending</span></td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr class="coached"><td>10/28–10/31</td><td>Pre-Season Nationals <span class="coach-flag">HWC Coaches Attending</span></td><td>Des Moines, IA</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr class="coached"><td>11/07</td><td>SKWC Opener <span class="coach-flag">HWC Coaches Attending</span></td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr class="uncoached"><td>11/08</td><td>TX USAW South Region &ndash; Team Texas Clinic <span class="coach-flag-off">No HWC coaches</span></td><td>TBD</td><td><span class="event-type tournament">Clinic</span></td></tr>
+        <tr class="coached"><td>11/14</td><td>Rise The Lion&rsquo;s Den <span class="coach-flag">HWC Coaches Attending</span></td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr class="uncoached"><td>11/21</td><td>SKWC Wildcat Bash <span class="coach-flag-off">No HWC coaches</span></td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr class="uncoached"><td>11/22</td><td>TX-Central Rumble on the River (NB Elite) <span class="coach-flag-off">No HWC coaches</span></td><td>TBD</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr class="uncoached"><td>11/27–11/28</td><td>Panhandle Nationals <span class="coach-flag-off">No HWC coaches</span></td><td>Amarillo Civic Center, Amarillo, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr class="uncoached"><td>12/05</td><td>Edge of Texas Nationals <span class="coach-flag-off">No HWC coaches</span></td><td>UTEP Memorial Gym, El Paso, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr class="coached"><td>12/12</td><td>Katy Area Classic <span class="coach-flag">HWC Coaches Attending</span></td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr class="uncoached"><td>12/13</td><td>TX USAW South Region &ndash; Team Texas Clinic <span class="coach-flag-off">No HWC coaches</span></td><td>TBD</td><td><span class="event-type tournament">Clinic</span></td></tr>
+        <tr class="uncoached"><td>12/19</td><td>KT3 Tournament <span class="coach-flag-off">No HWC coaches</span></td><td>TBD</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr class="uncoached"><td>01/02</td><td>SKWC 16th Annual Dermody Open <span class="coach-flag-off">No HWC coaches</span></td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr class="coached"><td>01/09–01/10</td><td>Come &amp; Take It Duals <span class="coach-flag">HWC Coaches Attending</span></td><td>Legends Event Center, 2533 Midtown Park Blvd, Bryan, TX</td><td><span class="event-type dual">Dual</span></td></tr>
+        <tr class="coached"><td>01/09–01/10</td><td>Texas Nationals <span class="coach-flag">HWC Coaches Attending</span></td><td>Legends Event Center, 2533 Midtown Park Blvd, Bryan, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr class="uncoached"><td>01/16</td><td>SKWC Wildcat Brawl <span class="coach-flag-off">No HWC coaches</span></td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr class="uncoached"><td>01/23</td><td>Heart of Texas Nationals <span class="coach-flag-off">No HWC coaches</span></td><td>TBD</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr class="coached"><td>01/30</td><td>SKWC Last Roundup <span class="coach-flag">HWC Coaches Attending</span></td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr class="uncoached"><td>02/06–02/07</td><td>Lonestar Nationals <span class="coach-flag-off">No HWC coaches</span></td><td>Opportunity Central (The OC), 680 Innovation Blvd, Forney, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr class="coached"><td>02/06–02/07</td><td>Texas Rookie &amp; Tot State Championship <span class="coach-flag">HWC Coaches Attending</span></td><td>Opportunity Central (The OC), 680 Innovation Blvd, Forney, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr class="coached"><td>02/06–02/07</td><td>Texas Novice State Championship <span class="coach-flag">HWC Coaches Attending</span></td><td>Opportunity Central (The OC), 680 Innovation Blvd, Forney, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr class="uncoached"><td>02/14</td><td>South Region Training Day &ndash; State Prep <span class="coach-flag-off">No HWC coaches</span></td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type practice">Training</span></td></tr>
+        <tr class="uncoached"><td>02/20</td><td>484 Scrap Tournament and Last Chance Qualifier Tournament <span class="coach-flag-off">No HWC coaches</span></td><td>Waller HS, Waller, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr class="uncoached"><td>02/21</td><td>State Champ Camp <span class="coach-flag-off">No HWC coaches</span></td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Camp</span></td></tr>
+        <tr class="coached"><td>02/27–02/28</td><td>Texas Open &amp; Girls State Championship <span class="coach-flag">HWC Coaches Attending</span></td><td>Credit Union of Texas Events Center, 200 E Stacy Rd, Allen, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr class="uncoached"><td>03/14</td><td>TX USAW South Region &ndash; Team Texas Clinic <span class="coach-flag-off">No HWC coaches</span></td><td>TBD</td><td><span class="event-type tournament">Clinic</span></td></tr>
+        <tr class="uncoached"><td>04/02–04/04</td><td>USAW Heartland National Youth Duals <span class="coach-flag-off">No HWC coaches</span></td><td>Mid-America Center, Council Bluffs, IA</td><td><span class="event-type dual">Dual</span></td></tr>
+        <tr class="uncoached"><td>04/11</td><td>TX USAW South Region &ndash; Team Texas Clinic <span class="coach-flag-off">No HWC coaches</span></td><td>TBD</td><td><span class="event-type tournament">Clinic</span></td></tr>
+        <tr class="uncoached"><td>04/17–04/18</td><td>Space City Duals (FS/GR Duals &ndash; Boys &amp; Girls Teams) <span class="coach-flag-off">No HWC coaches</span></td><td>East Montgomery Convention Center, New Caney, TX</td><td><span class="event-type dual">Dual</span></td></tr>
       </tbody>
     </table></div>
     <script>
     /* Next tournament countdown. Reads the Events Schedule table above, so
-       editing the table is the only upkeep. Counts Tournament and Dual rows,
-       skips clinics/camps/training. Dates there are MM/DD without a year:
+       editing the table is the only upkeep. Counts Tournament and Dual rows
+       (only rows marked .coached, once any row is), skips clinics/camps/training. Dates there are MM/DD without a year:
        Jul-Dec belong to the season's first year, Jan-Jun to the next. An
        event stays "next" until its last day ends, then the next one takes
        over. Events sharing a start date are shown together. */
@@ -2212,13 +2233,15 @@ footer span { color: var(--crimson-bright); }
 
       function events(now){
         var y0 = seasonStartYear(now), list = [];
+        var anyCoached = !!table.querySelector('tr.coached');   // only events HWC coaches attend
         [].forEach.call(table.tBodies[0].rows, function(r){
           var c = r.cells; if (c.length < 4) return;
           if (!COUNTS.test(c[3].textContent.trim())) return;
+          if (anyCoached && !r.classList.contains('coached')) return;
           var parts = c[0].textContent.trim().split(/\s*[\u2013-]\s*/);
           if (!/^\d{1,2}\/\d{1,2}$/.test(parts[0])) return;
           list.push({
-            name: c[1].textContent.trim(),
+            name: (c[1].firstChild && c[1].firstChild.nodeType === 3 ? c[1].firstChild.textContent : c[1].textContent).trim(),
             where: c[2].textContent.trim(),
             when: c[0].textContent.trim(),
             start: toDate(parts[0], y0, false),
