@@ -495,6 +495,47 @@ section.alt { background: var(--dark2); }
 }
 .section-title span { color: var(--crimson-bright); }
 
+/* NEXT TOURNAMENT COUNTDOWN (filled by the script after #events-schedule) */
+.next-meet {
+  background: var(--dark2);
+  border-top: 1px solid rgba(139,26,26,0.35);
+  padding: 2.4rem 3rem 2.6rem;
+  text-align: center;
+}
+.next-meet[hidden] { display: none; }
+.next-meet .section-label { justify-content: center; }
+.next-meet .section-label::after { content: ''; width: 20px; height: 1px; background: var(--crimson); }
+.next-meet-name {
+  font-family: var(--display); font-size: 1.7rem; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--silver-light); margin: 0.2rem 0 0.4rem;
+}
+.next-meet-meta { font-family: var(--body); font-size: 1.05rem; color: var(--text-dim); }
+.next-meet-clock { display: flex; justify-content: center; gap: 0.9rem; margin-top: 1.5rem; }
+.next-meet-unit {
+  min-width: 92px; padding: 0.9rem 0.6rem 0.7rem;
+  background: var(--charcoal); border: 1px solid rgba(139,26,26,0.45); border-radius: 4px;
+}
+.next-meet-num {
+  display: block; font-family: var(--display); font-size: 2.4rem; line-height: 1;
+  color: var(--off-white); font-variant-numeric: tabular-nums;
+}
+.next-meet-lbl {
+  display: block; margin-top: 0.45rem; font-family: var(--condensed);
+  font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--crimson-bright);
+}
+.next-meet-live {
+  margin-top: 1.4rem; font-family: var(--condensed); font-size: 1rem;
+  letter-spacing: 4px; text-transform: uppercase; color: var(--crimson-bright);
+}
+@media (max-width: 700px) {
+  .next-meet { padding: 2rem 1.2rem 2.2rem; }
+  .next-meet-name { font-size: 1.3rem; }
+  .next-meet-clock { gap: 0.5rem; }
+  .next-meet-unit { min-width: 0; flex: 1; max-width: 80px; padding: 0.7rem 0.3rem 0.6rem; }
+  .next-meet-num { font-size: 1.8rem; }
+  .next-meet-lbl { font-size: 0.62rem; letter-spacing: 2px; }
+}
+
 /* COACHES SECTION */
 .coaches-section {
   position: relative;
@@ -1890,6 +1931,19 @@ footer span { color: var(--crimson-bright); }
     </div>
   </div>
 
+  <div class="next-meet" id="next-meet" hidden aria-live="off">
+    <div class="section-label">Next Tournament</div>
+    <div class="next-meet-name" id="next-meet-name"></div>
+    <div class="next-meet-meta" id="next-meet-meta"></div>
+    <div class="next-meet-clock" id="next-meet-clock">
+      <div class="next-meet-unit"><span class="next-meet-num" data-u="d">0</span><span class="next-meet-lbl">Days</span></div>
+      <div class="next-meet-unit"><span class="next-meet-num" data-u="h">00</span><span class="next-meet-lbl">Hours</span></div>
+      <div class="next-meet-unit"><span class="next-meet-num" data-u="m">00</span><span class="next-meet-lbl">Min</span></div>
+      <div class="next-meet-unit"><span class="next-meet-num" data-u="s">00</span><span class="next-meet-lbl">Sec</span></div>
+    </div>
+    <div class="next-meet-live" id="next-meet-live" hidden>Happening now &middot; Go Highlanders!</div>
+  </div>
+
   <div class="blade-divider"></div>
 
   <section class="coaches-section">
@@ -2056,50 +2110,117 @@ footer span { color: var(--crimson-bright); }
     </script>
 
     <div class="section-title" style="font-size:1.4rem;margin-bottom:1rem;margin-top:2.5rem;">Events <span>Schedule</span></div>
-    <div class="schedule-wrapper"><table class="schedule-table">
+    <div class="schedule-wrapper"><table class="schedule-table" id="events-schedule">
       <thead><tr><th>Date</th><th>Event</th><th>Location</th><th>Type</th></tr></thead>
       <tbody>
-        <tr><td>05/16–05/17</td><td>WCAP Camp</td><td>Spring Klein Wrestling Club</td><td><span class="event-type tournament">Camp</span></td></tr>
-        <tr><td>06/05–06/06</td><td>Anthony Echemendia Camp</td><td>Wolfpack Wrestling Club</td><td><span class="event-type tournament">Camp</span></td></tr>
-        <tr><td>06/08–06/12</td><td>14U National Duals</td><td>Wesley Chapel, FL</td><td><span class="event-type dual">Dual</span></td></tr>
-        <tr><td>06/11–06/14</td><td>16U National Duals (Boys)</td><td>Herriman, UT</td><td><span class="event-type dual">Dual</span></td></tr>
-        <tr><td>06/16–06/20</td><td>Junior Boys National Duals</td><td>Milwaukee, WI</td><td><span class="event-type dual">Dual</span></td></tr>
-        <tr><td>06/16–06/20</td><td>Women's National Duals</td><td>Milwaukee, WI</td><td><span class="event-type dual">Dual</span></td></tr>
-        <tr><td>07/09–07/18</td><td>USMC Junior &amp; 16U National Tournament</td><td>Fargo, ND</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>07/24–07/26</td><td>Mat Bash Duals</td><td>Coppell, TX</td><td><span class="event-type dual">Dual</span></td></tr>
-        <tr><td>08/29–08/30</td><td>Super 32 Early Entry Texas Tournament</td><td>Clear Springs HS</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>10/03</td><td>Legacy's Aggieland Takedown</td><td>Bryan High School (Gym #3), Bryan, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>10/10</td><td>Westchase WC Kickoff</td><td>Spring Klein Wrestling Club, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>10/03</td><td>Legacy&rsquo;s Aggieland Takedown</td><td>Bryan High School (Gym #3), 3450 Campus Dr, Bryan, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>10/10</td><td>Westchase WC Kickoff</td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
         <tr><td>10/11</td><td>TX USAW South Region &ndash; Team Texas Clinic</td><td>TBD</td><td><span class="event-type tournament">Clinic</span></td></tr>
-        <tr><td>10/17</td><td>Legacy's Fall Brawl</td><td>Bryan High School (Gym #3), Bryan, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>10/23–10/26</td><td>Preseason Nationals</td><td>Des Moines, IA</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>10/24</td><td>Grand Oaks Takedown</td><td>Spring Klein Wrestling Club, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>11/07</td><td>SKWC Opener</td><td>Spring Klein Wrestling Club, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>10/17</td><td>Legacy&rsquo;s Fall Brawl</td><td>Bryan High School (Gym #3), 3450 Campus Dr, Bryan, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>10/24</td><td>Grand Oaks Takedown</td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>10/28–10/31</td><td>Pre-Season Nationals</td><td>Des Moines, IA</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>11/07</td><td>SKWC Opener</td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
         <tr><td>11/08</td><td>TX USAW South Region &ndash; Team Texas Clinic</td><td>TBD</td><td><span class="event-type tournament">Clinic</span></td></tr>
-        <tr><td>11/14</td><td>Rise The Lions Den</td><td>Spring Klein Wrestling Club, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>11/21</td><td>SKWC Wildcat Bash</td><td>Spring Klein Wrestling Club, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>11/14</td><td>Rise The Lion&rsquo;s Den</td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>11/21</td><td>SKWC Wildcat Bash</td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
         <tr><td>11/22</td><td>TX-Central Rumble on the River (NB Elite)</td><td>TBD</td><td><span class="event-type tournament">Tournament</span></td></tr>
         <tr><td>11/27–11/28</td><td>Panhandle Nationals</td><td>Amarillo Civic Center, Amarillo, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
         <tr><td>12/05</td><td>Edge of Texas Nationals</td><td>UTEP Memorial Gym, El Paso, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>12/12</td><td>Katy Area Classic</td><td>Spring Klein Wrestling Club, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>12/12</td><td>Katy Area Classic</td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
         <tr><td>12/13</td><td>TX USAW South Region &ndash; Team Texas Clinic</td><td>TBD</td><td><span class="event-type tournament">Clinic</span></td></tr>
         <tr><td>12/19</td><td>KT3 Tournament</td><td>TBD</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>01/02</td><td>SKWC 16th Annual Dermody Open</td><td>Spring Klein Wrestling Club, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>01/09–01/10</td><td>Texas Nationals &amp; Come And Take It Duals</td><td>Legends Event Center, Bryan, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>01/16</td><td>SKWC Wildcat Brawl</td><td>Spring Klein Wrestling Club, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>01/02</td><td>SKWC 16th Annual Dermody Open</td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>01/09–01/10</td><td>Come &amp; Take It Duals</td><td>Legends Event Center, 2533 Midtown Park Blvd, Bryan, TX</td><td><span class="event-type dual">Dual</span></td></tr>
+        <tr><td>01/09–01/10</td><td>Texas Nationals</td><td>Legends Event Center, 2533 Midtown Park Blvd, Bryan, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>01/16</td><td>SKWC Wildcat Brawl</td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
         <tr><td>01/23</td><td>Heart of Texas Nationals</td><td>TBD</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>01/30</td><td>SKWC Last Roundup</td><td>Spring Klein Wrestling Club, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>02/06–02/07</td><td>Lonestar Nationals and Rookie &amp; Novice State Tournament</td><td>The OC, Forney, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>02/14</td><td>South Region Training Day &ndash; State Prep</td><td>Spring Klein Wrestling Club, Spring, TX</td><td><span class="event-type practice">Training</span></td></tr>
+        <tr><td>01/30</td><td>SKWC Last Roundup</td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>02/06–02/07</td><td>Lonestar Nationals</td><td>Opportunity Central (The OC), 680 Innovation Blvd, Forney, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>02/06–02/07</td><td>Texas Rookie &amp; Tot State Championship</td><td>Opportunity Central (The OC), 680 Innovation Blvd, Forney, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>02/06–02/07</td><td>Texas Novice State Championship</td><td>Opportunity Central (The OC), 680 Innovation Blvd, Forney, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>02/14</td><td>South Region Training Day &ndash; State Prep</td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type practice">Training</span></td></tr>
         <tr><td>02/20</td><td>484 Scrap Tournament and Last Chance Qualifier Tournament</td><td>Waller HS, Waller, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
-        <tr><td>02/21</td><td>State Champ Camp</td><td>Spring Klein Wrestling Club, Spring, TX</td><td><span class="event-type tournament">Camp</span></td></tr>
-        <tr><td>02/27–02/28</td><td>TX-USAW Youth Folkstyle State Tournament (Open &amp; Girls)</td><td>Allen Event Center, Allen, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
+        <tr><td>02/21</td><td>State Champ Camp</td><td>Spring Klein Wrestling Club, 18016 Strack Drive East, Spring, TX</td><td><span class="event-type tournament">Camp</span></td></tr>
+        <tr><td>02/27–02/28</td><td>Texas Open &amp; Girls State Championship</td><td>Credit Union of Texas Events Center, 200 E Stacy Rd, Allen, TX</td><td><span class="event-type tournament">Tournament</span></td></tr>
         <tr><td>03/14</td><td>TX USAW South Region &ndash; Team Texas Clinic</td><td>TBD</td><td><span class="event-type tournament">Clinic</span></td></tr>
         <tr><td>04/02–04/04</td><td>USAW Heartland National Youth Duals</td><td>Mid-America Center, Council Bluffs, IA</td><td><span class="event-type dual">Dual</span></td></tr>
         <tr><td>04/11</td><td>TX USAW South Region &ndash; Team Texas Clinic</td><td>TBD</td><td><span class="event-type tournament">Clinic</span></td></tr>
         <tr><td>04/17–04/18</td><td>Space City Duals (FS/GR Duals &ndash; Boys &amp; Girls Teams)</td><td>East Montgomery Convention Center, New Caney, TX</td><td><span class="event-type dual">Dual</span></td></tr>
       </tbody>
     </table></div>
+    <script>
+    /* Next tournament countdown. Reads the Events Schedule table above, so
+       editing the table is the only upkeep. Counts Tournament and Dual rows,
+       skips clinics/camps/training. Dates there are MM/DD without a year:
+       Jul-Dec belong to the season's first year, Jan-Jun to the next. An
+       event stays "next" until its last day ends, then the next one takes
+       over. Events sharing a start date are shown together. */
+    (function(){
+      var table = document.getElementById('events-schedule');
+      var box = document.getElementById('next-meet');
+      if (!table || !box) return;
+      var COUNTS = /^(tournament|dual)$/i;
+      var START_HOUR = 8;   // no start times in the table; count to 8 AM
+
+      function seasonStartYear(now){ return now.getMonth() >= 6 ? now.getFullYear() : now.getFullYear() - 1; }
+      function toDate(md, y0, endOfDay){
+        var p = md.split('/'), m = +p[0] - 1, d = +p[1];
+        var y = m >= 6 ? y0 : y0 + 1;
+        return endOfDay ? new Date(y, m, d, 23, 59, 59) : new Date(y, m, d, START_HOUR);
+      }
+
+      function events(now){
+        var y0 = seasonStartYear(now), list = [];
+        [].forEach.call(table.tBodies[0].rows, function(r){
+          var c = r.cells; if (c.length < 4) return;
+          if (!COUNTS.test(c[3].textContent.trim())) return;
+          var parts = c[0].textContent.trim().split(/\s*[\u2013-]\s*/);
+          if (!/^\d{1,2}\/\d{1,2}$/.test(parts[0])) return;
+          list.push({
+            name: c[1].textContent.trim(),
+            where: c[2].textContent.trim(),
+            when: c[0].textContent.trim(),
+            start: toDate(parts[0], y0, false),
+            end: toDate(parts[1] || parts[0], y0, true)
+          });
+        });
+        return list.sort(function(a, b){ return a.start - b.start; });
+      }
+
+      var nameEl = document.getElementById('next-meet-name'),
+          metaEl = document.getElementById('next-meet-meta'),
+          clockEl = document.getElementById('next-meet-clock'),
+          liveEl = document.getElementById('next-meet-live'),
+          nums = {};
+      [].forEach.call(clockEl.querySelectorAll('[data-u]'), function(n){ nums[n.getAttribute('data-u')] = n; });
+      function pad(n){ return n < 10 ? '0' + n : '' + n; }
+
+      function tick(){
+        var now = new Date();
+        var upcoming = events(now).filter(function(e){ return e.end > now; });
+        if (!upcoming.length){ box.hidden = true; return; }
+        var first = upcoming[0];
+        var same = upcoming.filter(function(e){ return +e.start === +first.start; });
+        box.hidden = false;
+        var names = same.map(function(e){ return e.name; });
+        nameEl.textContent = names.length > 1
+          ? names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1]
+          : names[0];
+        metaEl.textContent = first.when + '  \u00b7  ' + first.where;
+        var ms = first.start - now;
+        if (ms <= 0){ clockEl.hidden = true; liveEl.hidden = false; return; }
+        clockEl.hidden = false; liveEl.hidden = true;
+        var t = Math.floor(ms / 1000);
+        nums.d.textContent = Math.floor(t / 86400);
+        nums.h.textContent = pad(Math.floor(t % 86400 / 3600));
+        nums.m.textContent = pad(Math.floor(t % 3600 / 60));
+        nums.s.textContent = pad(t % 60);
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+    </script>
+
 
     <div class="section-title" style="font-size:1.4rem;margin-bottom:1rem;margin-top:2.5rem;">Cancelled <span>Practices</span></div>
     <div class="schedule-wrapper"><table class="schedule-table">
