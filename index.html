@@ -2670,6 +2670,39 @@ footer span { color: var(--crimson-bright); }
       <div class="section-label">Apparel &amp; Gear</div>
       <div class="section-title">Club <span>Store</span></div>
       <p style="color:var(--silver); font-size:1.1rem; margin: 1.5rem auto 2.5rem; max-width:640px;">Browse selected Highlander items below or visit our full store to see everything. Rudis gear is available through our Rudis team store.</p>
+      <!-- Rudis team store close countdown. CLOSE matches the closeDate on the Rudis store page (11:59 PM Eastern). -->
+      <div class="next-meet" id="rudis-countdown" style="background:none; border:0; padding:0 0 2.2rem;">
+        <div class="section-label">Rudis Team Store Closes In</div>
+        <div class="next-meet-meta">Order by Thursday, Oct 15 &middot; 11:59 PM ET (10:59 PM CT)</div>
+        <div class="next-meet-clock" id="rudis-clock">
+          <div class="next-meet-unit"><span class="next-meet-num" data-u="d">0</span><span class="next-meet-lbl">Days</span></div>
+          <div class="next-meet-unit"><span class="next-meet-num" data-u="h">00</span><span class="next-meet-lbl">Hours</span></div>
+          <div class="next-meet-unit"><span class="next-meet-num" data-u="m">00</span><span class="next-meet-lbl">Min</span></div>
+          <div class="next-meet-unit"><span class="next-meet-num" data-u="s">00</span><span class="next-meet-lbl">Sec</span></div>
+        </div>
+        <div class="next-meet-live" id="rudis-closed" hidden>The Rudis team store is closed</div>
+      </div>
+      <script>
+      (function(){
+        var CLOSE = new Date('2026-10-16T03:59:00Z');
+        var clock = document.getElementById('rudis-clock'),
+            closed = document.getElementById('rudis-closed'),
+            nums = {}, timer;
+        [].forEach.call(clock.querySelectorAll('[data-u]'), function(n){ nums[n.getAttribute('data-u')] = n; });
+        function pad(n){ return n < 10 ? '0' + n : '' + n; }
+        function tick(){
+          var ms = CLOSE - new Date();
+          if (ms <= 0){ clock.hidden = true; closed.hidden = false; clearInterval(timer); return; }
+          var t = Math.floor(ms / 1000);
+          nums.d.textContent = pad(Math.floor(t / 86400));
+          nums.h.textContent = pad(Math.floor(t % 86400 / 3600));
+          nums.m.textContent = pad(Math.floor(t % 3600 / 60));
+          nums.s.textContent = pad(t % 60);
+        }
+        tick();
+        timer = setInterval(tick, 1000);
+      })();
+      </script>
       <div style="display:flex; gap:12px; justify-content:center; margin-bottom:28px; flex-wrap:wrap;">
         <a class="store-cta-btn" href="https://highlander-wrestling-club-ots2026.itemorder.com/shop/home/" target="_blank" rel="noopener">Visit Full Store</a>
         <a class="store-cta-btn" href="https://www.rudis.com/collections/opp0038258" target="_blank" rel="noopener">Rudis Team Store</a>
