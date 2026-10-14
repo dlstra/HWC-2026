@@ -773,6 +773,14 @@ section.alt { background: var(--dark2); }
   margin: -.4rem 0 1rem; font-family: var(--body); font-size: .95rem; color: var(--text-dim);
 }
 .coach-key .coach-flag { margin: 0 .35rem 0 0; }
+.print-row { text-align: right; margin: -.25rem 0 .6rem; }
+.print-link {
+  background: none; border: none; cursor: pointer; padding: 0;
+  font-family: var(--condensed); font-size: .72rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--crimson-bright);
+  text-decoration: underline; text-underline-offset: 4px;
+}
+.print-link:hover { color: var(--off-white); }
 .event-type {
   display: inline-block;
   font-family: var(--condensed);
@@ -2221,6 +2229,7 @@ footer span { color: var(--crimson-bright); }
 
     <div class="section-title" style="font-size:1.4rem;margin-bottom:1rem;margin-top:2.5rem;">Events <span>Schedule</span></div>
     <p class="coach-key"><span class="coach-flag">HWC Coaches Attending</span> = Highlander coaches will be there. Other events are open to athletes, but no HWC coaches are planning to attend.</p>
+    <div class="print-row"><button type="button" class="print-link" onclick="printEventsSchedule()">&#128424; Print schedule</button></div>
     <div class="schedule-wrapper"><table class="schedule-table" id="events-schedule">
       <thead><tr><th>Date</th><th>Event</th><th>Location</th><th>Type</th></tr></thead>
       <tbody>
@@ -3190,6 +3199,40 @@ function filterPastEvents() {
   });
 }
 filterPastEvents();
+
+/* ── PRINT EVENTS SCHEDULE ── opens a clean black-on-white copy of the
+   upcoming events (rows hidden as past are left out) and prints it */
+function printEventsSchedule() {
+  const table = document.getElementById('events-schedule').cloneNode(true);
+  table.querySelectorAll('tbody tr').forEach(r => { if (r.style.display === 'none') r.remove(); });
+  table.querySelectorAll('.coach-flag').forEach(f => f.replaceWith('★'));
+  table.querySelectorAll('.coach-flag-off').forEach(f => f.remove());
+  table.querySelectorAll('.event-type').forEach(t => t.replaceWith(t.textContent));
+  const w = window.open('', '_blank');
+  if (!w) { window.print(); return; }
+  w.document.write(`<!doctype html><html><head><meta charset="utf-8">
+    <title>Highlander Wrestling Club – Events Schedule</title>
+    <style>
+      body { font-family: Georgia, serif; color: #000; margin: 24px; }
+      h1 { font-size: 20px; margin: 0 0 4px; }
+      p { margin: 0 0 14px; font-size: 13px; color: #444; }
+      table { width: 100%; border-collapse: collapse; font-size: 12px; }
+      th, td { border: 1px solid #999; padding: 5px 7px; text-align: left; vertical-align: top; }
+      th { background: #eee; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; }
+      td:first-child { white-space: nowrap; }
+      thead { display: table-header-group; }
+      tr { page-break-inside: avoid; }
+      @page { margin: 0.5in; }
+    </style></head><body>
+    <h1>Highlander Wrestling Club – Events Schedule</h1>
+    <p>★ = HWC coaches attending · highlanderwrestlingclub.com</p>
+    ${table.outerHTML}
+    </body></html>`);
+  w.document.close();
+  w.focus();
+  w.onafterprint = () => w.close();
+  setTimeout(() => w.print(), 250);
+}
 
 </script>
 </body>
