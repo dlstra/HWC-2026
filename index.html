@@ -1702,7 +1702,8 @@ footer span { color: var(--crimson-bright); }
   .contact-layout { padding: 2rem 1.2rem; }
   .page-banner h2 { font-size: 2rem; }
   .store-grid { grid-template-columns: 1fr; }
-  .schedule-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  /* Scroll the wrapper both ways (not the table) so the sticky header still works */
+  .schedule-wrapper { overflow: auto; -webkit-overflow-scrolling: touch; }
 }
 @media(max-width:400px){
   .hero-h1 { font-size: 1.9rem; }
